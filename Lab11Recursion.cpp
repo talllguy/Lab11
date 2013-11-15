@@ -18,6 +18,7 @@ int main ()
 {
 	double x = 0, simpleResult = 0, recursiveResult = 0, recLogNResult = 0, exponentialResult = 0;
 	int n = 0, choice = 0;
+	double duration = 0;
 
 	cout << "To process big O notation for x and n: press 1\n"
 		<< "To illustrate time complexity of 2^n  : press 2\n";
@@ -44,10 +45,16 @@ int main ()
 	case 2:
 		cout << "Enter a value for n to test time complexity for 2^n: ";
 		cin >> n;
-
+		
+		//start clock
+		clock_t start;
+		start = clock();
+		// run function
 		exponentialResult = loopExponential(n);
-
-		cout << "4. Calculating (2^n) in big O notation yields ..... " << exponentialResult;
+		// end clock
+		duration = (clock() - start ) / (double) CLOCKS_PER_SEC;
+		cout << "4. Calculating (2^n) in big O notation yields ..... " << exponentialResult << endl
+			<< "This took " << duration << " seconds.\n";
 		break;
 	default:
 		break;
@@ -56,7 +63,7 @@ int main ()
 	return 0; // end
 }
 
-double loopSimple (double x,int n)
+double loopSimple (double x,int n) // simple exponential loop
 {
 	double result = 1;
 	for (int i = 0; i < n; i++)
@@ -66,16 +73,16 @@ double loopSimple (double x,int n)
 	return result;
 }
 
-double loopRecursion (double x,int n)
+double loopRecursion (double x,int n) // loop using recursion
 {
 	if ( n == 0 )
 		return 1;
 	else
-		return x * loopRecursion (x, n - 1);
+		return x * loopRecursion (x, n - 1); // call of function in function is recursive
 
 }
 
-double loopRecursLog (double x,int n)
+double loopRecursLog (double x,int n) // more efficient calculation because the possibility is cut in half each time
 {
 	if ( n == 0 ) { return 1; }
 	else if ( n == 1 ) return x;
@@ -85,14 +92,16 @@ double loopRecursLog (double x,int n)
 		return loopRecursLog (x*x, n/2) * x;
 }
 
-double loopExponential (int n)
+double loopExponential (int n) // long long loop to calculate exponential, can take a long time.
 {
-	double power =1;
-	for(int j=1; j <= n; j++)
+	double power = 1, result = 0;
+	double j = 1, k = 1;
+	for(j=1; j <= n; j++)
 	{
 		power = power * 2;
-		for(int k=1; k<= power; k++)
-			return k;
+		for(k=1; k<= power; k++)
+			//cout << k << endl;
+			result = k;
 	}
-	
+	return result;
 }
