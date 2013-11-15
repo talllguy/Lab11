@@ -2,6 +2,20 @@
 COSC 501
 Elliott Plack
 13 NOV 2013									Due: 18 NOV 2013
+Problem:
+	Develop three functions that must satisfy the Big-O
+		requirements as shown below
+
+	1. Develop a function that uses a loop to calculate
+		x^n in O(n)
+	2. Develop a function that recursively calculates
+		x^n in O(n)
+	3. Develop a function that recursively calculates
+		x^n in O(log n)
+	4. Develop a function that has O(2^n) time complexity.
+Algorithm:
+	Write various loops to satisfy requirements. For the
+	final problem implement a timer to test.
 ************************************************************/
 
 #include <iostream>
@@ -12,11 +26,11 @@ using namespace std;
 double loopSimple (double,int); // simple loop function
 double loopRecursion (double,int); // loop using recursion
 double loopRecursLog (double,int); // loop using recursion and log n
-double loopExponential (int); // loop using o(2^n) which may take a long time to run.
+void loopExponential (int); // loop using o(2^n) which may take a long time to run.
 
 int main ()
 {
-	double x = 0, simpleResult = 0, recursiveResult = 0, recLogNResult = 0, exponentialResult = 0;
+	double x = 0, simpleResult = 0, recursiveResult = 0, recLogNResult = 0;
 	int n = 0, choice = 0;
 	double duration = 0;
 
@@ -37,7 +51,7 @@ int main ()
 		recursiveResult = loopRecursion(x, n);
 		recLogNResult = loopRecursLog(x, n);
 
-		cout << "This program :\n"
+		cout // all on next line for visualization
 			<< "1. Using a loop to calculate x^n yields ........... " << simpleResult << endl
 			<< "2. Recursively calculating x^n yields ............. " << recursiveResult << endl
 			<< "3. Recursively calculating x^n using logn yields .. " << recLogNResult << endl;
@@ -50,11 +64,10 @@ int main ()
 		clock_t start;
 		start = clock();
 		// run function
-		exponentialResult = loopExponential(n);
+		loopExponential(n);
 		// end clock
 		duration = (clock() - start ) / (double) CLOCKS_PER_SEC;
-		cout << "4. Calculating (2^n) in big O notation yields ..... " << exponentialResult << endl
-			<< "This took " << duration << " seconds.\n";
+		cout << "This took " << duration << " seconds.\n";
 		break;
 	default:
 		break;
@@ -92,7 +105,7 @@ double loopRecursLog (double x,int n) // more efficient calculation because the 
 		return loopRecursLog (x*x, n/2) * x;
 }
 
-double loopExponential (int n) // long long loop to calculate exponential, can take a long time.
+void loopExponential (int n) // long long loop to calculate exponential, can take a long time.
 {
 	double power = 1, result = 0;
 	double j = 1, k = 1;
@@ -100,8 +113,6 @@ double loopExponential (int n) // long long loop to calculate exponential, can t
 	{
 		power = power * 2;
 		for(k=1; k<= power; k++)
-			//cout << k << endl;
-			result = k;
+			cout << k << endl;
 	}
-	return result;
 }
