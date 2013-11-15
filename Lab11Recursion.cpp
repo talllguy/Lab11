@@ -30,9 +30,9 @@ void loopExponential (int); // loop using o(2^n) which may take a long time to r
 
 int main ()
 {
-	double x = 0, simpleResult = 0, recursiveResult = 0, recLogNResult = 0;
+	double x = 0, simpleResult = 0, recursiveResult = 0, recLogNResult = 0; // variables
 	int n = 0, choice = 0;
-	double duration = 0;
+	double durationSimple = 0, durationRecursive = 0, durationLogN = 0, durationExpon = 0; // for the clock
 
 	cout << "To process big O notation for x and n: press 1\n"
 		<< "To illustrate time complexity of 2^n  : press 2\n";
@@ -40,34 +40,64 @@ int main ()
 
 	switch (choice)
 	{
-	case 1:
+	case 1: // big O notation prob. input x & n and all three things will calculate
 		cout << "Enter a value for x and n to process big O notation for. \n";
 		cout << "Enter x: ";
 		cin >> x;
 		cout << "Enter n: ";
 		cin >> n;
 
-		simpleResult = loopSimple(x, n);
-		recursiveResult = loopRecursion(x, n);
-		recLogNResult = loopRecursLog(x, n);
+		// first function
+
+		//start clock
+		clock_t startSimple;
+		startSimple = clock();
+		// run function
+		simpleResult = loopSimple(x, n); // go
+		// end clock
+		durationSimple = (clock() - startSimple ) / (double) CLOCKS_PER_SEC;
+
+		// second function
+
+		//start clock
+		clock_t startRecurs;
+		startRecurs = clock();
+		// run function
+		recursiveResult = loopRecursion(x, n); // go
+		// end clock
+		durationRecursive = (clock() - startRecurs ) / (double) CLOCKS_PER_SEC;
+
+		// third function
+
+		//start clock
+		clock_t startLogN;
+		startLogN = clock();
+		// run function
+		recLogNResult = loopRecursLog(x, n); // go
+		// end clock
+		durationLogN = (clock() - startLogN ) / (double) CLOCKS_PER_SEC;
+
 
 		cout // all on next line for visualization
-			<< "1. Using a loop to calculate x^n yields ........... " << simpleResult << endl
-			<< "2. Recursively calculating x^n yields ............. " << recursiveResult << endl
-			<< "3. Recursively calculating x^n using logn yields .. " << recLogNResult << endl;
+			<< "1. Using a loop to calculate x^n yields ........... " << simpleResult << " and took " <<
+			durationSimple << " seconds.\n"
+			<< "2. Recursively calculating x^n yields ............. " << recursiveResult << " and took " <<
+			durationRecursive << " seconds.\n"
+			<< "3. Recursively calculating x^n using logn yields .. " << recLogNResult << " and took " <<
+			durationLogN << " seconds.\n";
 		break;
-	case 2:
+	case 2: // time complexity, may take a while
 		cout << "Enter a value for n to test time complexity for 2^n: ";
 		cin >> n;
 		
 		//start clock
-		clock_t start;
-		start = clock();
+		clock_t startExp;
+		startExp = clock();
 		// run function
 		loopExponential(n);
 		// end clock
-		duration = (clock() - start ) / (double) CLOCKS_PER_SEC;
-		cout << "This took " << duration << " seconds.\n";
+		durationExpon = (clock() - startExp ) / (double) CLOCKS_PER_SEC;
+		cout << "This took " << durationExpon << " seconds.\n";
 		break;
 	default:
 		break;
