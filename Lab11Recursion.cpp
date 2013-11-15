@@ -79,11 +79,11 @@ int main ()
 
 
 		cout // all on next line for visualization
-			<< "1. Using a loop to calculate x^n yields ........... " << simpleResult << " and took " <<
+			<< "1. Using a loop to calculate x^n yields ........... " << simpleResult << ", which took " <<
 			durationSimple << " seconds.\n"
-			<< "2. Recursively calculating x^n yields ............. " << recursiveResult << " and took " <<
+			<< "2. Recursively calculating x^n yields ............. " << recursiveResult << ", which took " <<
 			durationRecursive << " seconds.\n"
-			<< "3. Recursively calculating x^n using logn yields .. " << recLogNResult << " and took " <<
+			<< "3. Recursively calculating x^n using logn yields .. " << recLogNResult << ", which took " <<
 			durationLogN << " seconds.\n";
 		break;
 	case 2: // time complexity, may take a while
