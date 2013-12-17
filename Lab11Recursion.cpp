@@ -1,7 +1,7 @@
 /********************************************************************
 COSC 501
 Elliott Plack
-13 NOV 2013        							Due: 18 NOV 2013
+13 NOV 2013                                         Due: 18 NOV 2013
 Problem:
     Develop three functions that must satisfy the Big-O
 	requirements as shown below
@@ -124,12 +124,14 @@ double loopRecursion (double x,int n) // loop using recursion
 
 double loopRecursLog (double x,int n) // more efficient calculation because the possibility is cut in half each time
 {
-	if ( n == 0 ) { return 1; }
-	else if ( n == 1 ) return x;
-	else if (n % 2 == 0)
-		return loopRecursLog (x*x, n/2);
+	if ( n == 0 )                                // if n is zero, just return 1 (terminating case)
+		return 1;
+	else if ( n == 1 )                           // if n is 1, send back x. //why?
+		return x;
+	else if (n % 2 == 0)                         // if n mod 2 = 0 (in other words its even)
+		return loopRecursLog (x*x, n/2);         // return half
 	else 
-		return loopRecursLog (x*x, n/2) * x;
+		return loopRecursLog (x*x, n/2) * x;     // else return the other half
 }
 
 void loopExponential (int n) // long long loop to calculate exponential, can take a long time.
