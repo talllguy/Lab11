@@ -1,22 +1,19 @@
-/************************************************************
+/********************************************************************
 COSC 501
 Elliott Plack
-13 NOV 2013									Due: 18 NOV 2013
+13 NOV 2013        							Due: 18 NOV 2013
 Problem:
-	Develop three functions that must satisfy the Big-O
-		requirements as shown below
+    Develop three functions that must satisfy the Big-O
+	requirements as shown below
 
-	1. Develop a function that uses a loop to calculate
-		x^n in O(n)
-	2. Develop a function that recursively calculates
-		x^n in O(n)
-	3. Develop a function that recursively calculates
-		x^n in O(log n)
-	4. Develop a function that has O(2^n) time complexity.
+    1. Develop a function that uses a loop to calculate x^n in O(n)
+    2. Develop a function that recursively calculates x^n in O(n)
+    3. Develop a function that recursively calculates x^n in O(log n)
+    4. Develop a function that has O(2^n) time complexity.
 Algorithm:
-	Write various loops to satisfy requirements. For the
-	final problem implement a timer to test.
-************************************************************/
+    Write various loops to satisfy requirements. For the final problem
+	implement a timer to test.
+**********************************************************************/
 
 #include <iostream>
 #include <time.h>
